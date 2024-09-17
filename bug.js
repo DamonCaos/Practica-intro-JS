@@ -7,7 +7,7 @@ Para este ejercicio tenemos que crear un archivo llamado bug.js con la solución
 const calcularPromedio = (numeros) => {
     let sumaTotal = 0;
 
-    // Uno de los errores esta en el bucle for, no puede ser i <= 0 ya que daria 
+    // Uno de los errores esta en el bucle for, no puede ser i <= 0 ya que tiene que ser la longitud de la variable numeros 
     for (let i = 0; i < numeros.length; i++) {
       sumaTotal += numeros[i]; // Sumar correctamente los elementos del array
     }
