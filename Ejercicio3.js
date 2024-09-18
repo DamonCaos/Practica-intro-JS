@@ -63,3 +63,26 @@ console.log(numbersToStrings(secondInput));
 const thirdInput = 11234;
 numbersToStrings(thirdInput); // '1-1-2-3-4'
 console.log(numbersToStrings(thirdInput));
+
+/*3.3 Ejercicio
+Crea una función para que con estos datos de entrada se produzca los siguientes
+resultados:*/
+const strings1 = 'string';
+// create your function here
+
+const reversedLenghtString = (strings) => {
+    const longitud = strings.length;
+    const reversedString = strings.split('').reverse().join('');
+    return `${longitud} ${reversedString}`;
+};
+
+reversedLenghtString(strings1); // '6 gnirts'
+console.log(reversedLenghtString(strings1));
+
+const strings2 = 'variable';
+reversedLenghtString(strings2); // '8 elbairav'
+console.log(reversedLenghtString(strings2));
+
+const strings3 = 'pointer';
+reversedLenghtString(strings3); // '7 retniop'
+console.log(reversedLenghtString(strings3));
