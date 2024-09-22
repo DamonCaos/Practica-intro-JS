@@ -33,7 +33,7 @@ proyectos: [
 }
 ];
 // Averiguar que trabajador tiene habilidades con JavaScript
-const javaScritDevelopers = datos.filter(developer => developer.habilidades.includes('JavaScript')).map(developer => developer.nombre);
+const javaScritDevelopers = datos.filter(developer => developer.habilidades.includes('JavaScript')).map(developer => ({nombre: developer.nombre}));
 console.log(`El desarollador que tiene habilidad con JavaScript es: ${javaScritDevelopers}`);
 //Listado de proyectos
 const proyectosJavaScript = datos
