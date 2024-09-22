@@ -93,11 +93,21 @@ const musicCatalog = () => {
      * @param {string} title - The title of the song to mark as a favorite.
      */
     const favoriteSong = (playlistName, title) => {
-        const playlist = playlists.find(playlist => playlist.name === playlistName);
-        const song = playlist.songs.find(song => song.title === title)
-        song.favorite = !song.favorite;
+        playlists = playlists.map(playlist => {
+            if (playlist.name === playlistName) {
+                return {
+                    ...playlist,
+                    songs: playlist.songs.map(song => {
+                        if (song.title === title) {
+                            return { ...song, favorite: !song.favorite };
+                        }
+                        return song;
+                    })
+                };
+            }
+            return playlist;
+        });
     };
-
     /**
      * Sorts songs in a specific playlist by a given criterion (title, artist, or duration).
      * @param {string} playlistName - The name of the playlist to sort songs in.
