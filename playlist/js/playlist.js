@@ -22,7 +22,7 @@ const musicCatalog = () => {
      * @type {Playlist[]}
      */
     let playlists = [];
-  
+
     /**
      * Adds a new playlist to the catalog.
      * @param {string} playlistName - The name of the new playlist.
@@ -31,7 +31,7 @@ const musicCatalog = () => {
         const playlistNueva = {name: playlistName, songs: []};
         playlists = [...playlists, playlistNueva]
     };
-  
+
     /**
      * Gets all playlists in the catalog.
      * @returns {Playlist[]} The list of all playlists.
@@ -39,15 +39,15 @@ const musicCatalog = () => {
     const getAllPlaylists = () => {
         return playlists;
     };
-  
+
     /**
      * Removes a playlist from the catalog.
      * @param {string} playlistName - The name of the playlist to remove.
      */
-      const removePlaylist = (playlistName) => {
+    const removePlaylist = (playlistName) => {
         playlists = playlists.filter(playlist => playlist.name !== playlistName)
-      };
-  
+    };
+
     /**
      * Adds a song to a specific playlist.
      * @param {string} playlistName - The name of the playlist to add the song to.
@@ -62,7 +62,7 @@ const musicCatalog = () => {
             throw new Error('Playlist no encontrada')
         }
     };
-  
+
     /**
      * Removes a song from a specific playlist.
      * @param {string} playlistName - The name of the playlist to remove the song from.
@@ -74,16 +74,19 @@ const musicCatalog = () => {
         if (!playlist) {
             throw new Error('Playlist no encontrada');
         };
-        const indexSong = playlist.songs.findIndex(song => song.title === title)
-        if (indexSong === -1) {
+        const removedSong = playlist.songs.some(song => song.title === title)
+        if (removedSong === -1) {
             throw new Error('Cancion no encontrada');
         }
-        playlist.songs = [
-            ...playlist.songs.slice(0, indexSong),
-            ...playlist.songs.slice(indexSong + 1)
-        ];
-    };
-  
+        playlist.songs = playlist.songs = playlist.songs.map(song => {
+                    if (song.title !== title) {
+                return song;
+            }
+            return null;
+        })
+        .filter(song => song !== null);
+};
+
     /**
      * Marks a song as a favorite or removes the favorite status.
      * @param {string} playlistName - The name of the playlist containing the song.
@@ -94,7 +97,7 @@ const musicCatalog = () => {
         const song = playlist.songs.find(song => song.title === title)
         song.favorite = !song.favorite;
     };
-  
+
     /**
      * Sorts songs in a specific playlist by a given criterion (title, artist, or duration).
      * @param {string} playlistName - The name of the playlist to sort songs in.
