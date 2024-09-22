@@ -55,13 +55,31 @@ const musicCatalog = () => {
      * @throws {Error} If the playlist is not found.
      */
     const addSongToPlaylist = (playlistName, song) => {
-        const addSongPlaylist = playlists.find(playlist => playlist.name === playlistName);
-        if (addSongPlaylist) {
-            addSongPlaylist.songs = [...addSongPlaylist.songs, song];
-        }else {
-            throw new Error('Playlist no encontrada')
+        let playlistFound = false;
+    
+        playlists = playlists.map(playlist => {
+            if (playlist.name === playlistName) {
+                playlistFound = true;
+                const newSongs = [
+                    ...playlist.songs,
+                    {
+                        title: song.title,
+                        artist: song.artist,
+                        genre: song.genre,
+                        duration: song.duration,
+                        favorite: false
+                    }
+                ];
+                return { ...playlist, songs: newSongs };
+            }
+            return playlist;
+        });
+    
+        if (!playlistFound) {
+            throw new Error('Playlist no encontrada');
         }
     };
+    
 
     /**
      * Removes a song from a specific playlist.
