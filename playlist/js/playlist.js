@@ -29,7 +29,7 @@ const musicCatalog = () => {
      */
     const createPlaylist = (playlistName) => {
         const playlistNueva = {name: playlistName, songs: []};
-        playlists.push(playlistNueva)
+        playlists = [...playlists, playlistNueva]
     };
   
     /**
